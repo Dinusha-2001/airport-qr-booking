@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import AdminSidebar from "@/components/AdminSidebar";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -22,7 +23,6 @@ function getStatusClasses(status: string) {
   }
 }
 
-const settings = await getBusinessSettings();
 
 type BookingRow = {
   id: string;
@@ -46,6 +46,7 @@ type BookingRow = {
 };
 
 export default async function AdminBookingsPage() {
+  const settings = await getBusinessSettings();
   const { data, error } = await supabaseServer
     .from("bookings")
     .select("*")
