@@ -1,0 +1,43 @@
+import { Booking } from "@/types/booking";
+
+export const dummyBookings: Booking[] = [
+  {
+    id: "1",
+    bookingReference: "SKY-2026-001",
+    customerName: "John Smith",
+    packageName: "Airport to Colombo",
+    pickupDate: "2026-03-25",
+    pickupTime: "09:30",
+    pickupLocation: "Bandaranaike International Airport",
+    dropLocation: "Colombo 03",
+    whatsappNumber: "+44 7123 456789",
+    bookingStatus: "Pending",
+    totalPrice: 8500,
+  },
+  {
+    id: "2",
+    bookingReference: "SKY-2026-002",
+    customerName: "Emma Brown",
+    packageName: "Airport to Negombo",
+    pickupDate: "2026-03-25",
+    pickupTime: "12:15",
+    pickupLocation: "Bandaranaike International Airport",
+    dropLocation: "Negombo Beach Hotel",
+    whatsappNumber: "+49 155 1234567",
+    bookingStatus: "Accepted",
+    totalPrice: 5000,
+  },
+  {
+    id: "3",
+    bookingReference: "SKY-2026-003",
+    customerName: "Michael Lee",
+    packageName: "Colombo City Tour",
+    pickupDate: "2026-03-26",
+    pickupTime: "08:00",
+    pickupLocation: "Colombo 07",
+    dropLocation: "Colombo City",
+    whatsappNumber: "+1 202 555 0101",
+    bookingStatus: "Completed",
+    totalPrice: 12000,
+  },
+];
