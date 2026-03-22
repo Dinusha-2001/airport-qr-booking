@@ -5,15 +5,11 @@ export async function POST(request: NextRequest) {
   const accessCode = String(formData.get("accessCode") || "");
   const expectedCode = process.env.DRIVER_ACCESS_CODE;
 
-  if (!expectedCode) {
-    return NextResponse.redirect(new URL("/auth/driver-login", request.url));
+  if (!expectedCode || accessCode !== expectedCode) {
+    return NextResponse.redirect(new URL("/auth/driver-login", request.url), 303);
   }
 
-  if (accessCode !== expectedCode) {
-    return NextResponse.redirect(new URL("/auth/driver-login", request.url));
-  }
-
-  const response = NextResponse.redirect(new URL("/driver", request.url));
+  const response = NextResponse.redirect(new URL("/driver", request.url), 303);
 
   response.cookies.set("driver_session", "active", {
     httpOnly: true,
