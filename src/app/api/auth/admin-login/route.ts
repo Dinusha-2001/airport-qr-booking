@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(request: NextRequest) {
+  return NextResponse.redirect(new URL("/auth/admin-login", request.url));
+}
+
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const accessCode = String(formData.get("accessCode") || "");
   const expectedCode = process.env.ADMIN_ACCESS_CODE;
 
-  if (!expectedCode) {
-    return NextResponse.redirect(new URL("/auth/admin-login", request.url));
-  }
-
-  if (accessCode !== expectedCode) {
+  if (!expectedCode || accessCode !== expectedCode) {
     return NextResponse.redirect(new URL("/auth/admin-login", request.url));
   }
 
