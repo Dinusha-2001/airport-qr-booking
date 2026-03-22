@@ -7,7 +7,7 @@ export default async function QrPage() {
   const settings = await getBusinessSettings();
 
   // Temporary URL (will change after deployment)
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://airport-qr-booking.vercel.app/";
 
   const packagesUrl = `${baseUrl}/packages`;
 
