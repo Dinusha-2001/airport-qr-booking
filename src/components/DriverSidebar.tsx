@@ -22,15 +22,7 @@ export default function DriverSidebar() {
         </Link>
       </nav>
 
-      <form
-        action="/"
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await fetch("/api/auth/logout", { method: "POST" });
-          window.location.href = "/";
-        }}
-        className="mt-8"
-      >
+      <form method="POST" action="/api/auth/logout" className="mt-8">
         <button
           type="submit"
           className="w-full rounded-lg border border-slate-600 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800"
