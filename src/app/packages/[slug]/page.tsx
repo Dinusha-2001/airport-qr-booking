@@ -89,7 +89,7 @@ export default async function PackageDetailsPage({
                 <span className="font-semibold">Vehicle Type:</span> Toyota Prius
               </p>
               <p>
-                <span className="font-semibold">Driver:</span> Nimal
+                <span className="font-semibold">Driver:</span> Umith
               </p>
             </div>
 
