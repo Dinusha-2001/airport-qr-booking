@@ -1,27 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  return NextResponse.redirect(new URL("/auth/admin-login", request.url));
-}
-
 export async function POST(request: NextRequest) {
-  const formData = await request.formData();
-  const accessCode = String(formData.get("accessCode") || "");
-  const expectedCode = process.env.ADMIN_ACCESS_CODE;
+  try {
+    const body = await request.json();
+    const accessCode = String(body.accessCode || "");
+    const expectedCode = process.env.ADMIN_ACCESS_CODE;
 
-  if (!expectedCode || accessCode !== expectedCode) {
-    return NextResponse.redirect(new URL("/auth/admin-login", request.url));
+    if (!expectedCode || accessCode !== expectedCode) {
+      return NextResponse.json(
+        { success: false, message: "Invalid admin access code." },
+        { status: 401 }
+      );
+    }
+
+    const response = NextResponse.json({ success: true });
+
+    response.cookies.set("admin_session", "active", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 8,
+    });
+
+    return response;
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Login failed." },
+      { status: 500 }
+    );
   }
-
-  const response = NextResponse.redirect(new URL("/admin", request.url));
-
-  response.cookies.set("admin_session", "active", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 8,
-  });
-
-  return response;
 }

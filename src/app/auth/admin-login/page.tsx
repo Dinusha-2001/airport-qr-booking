@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { getBusinessSettings } from "@/lib/business-settings";
+import AdminLoginForm from "./admin-login-form";
 
 export default async function AdminLoginPage() {
   const settings = await getBusinessSettings();
@@ -21,26 +22,7 @@ export default async function AdminLoginPage() {
             Enter the admin access code to open the admin dashboard.
           </p>
 
-          <form method="POST" action="/api/auth/admin-login" className="mt-8 space-y-4">
-            <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
-                Admin Access Code
-              </label>
-              <input
-                name="accessCode"
-                type="password"
-                required
-                className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-            >
-              Enter Admin Panel
-            </button>
-          </form>
+          <AdminLoginForm />
         </div>
       </section>
 
